@@ -1,0 +1,67 @@
+package apcsapackage;
+
+import java.util.Scanner;
+
+public class MatchmakerMatchmaker {
+	
+	public static void main(String[] args) {
+		
+		String nameIn =  "";
+		int nameLength = 10;
+		Scanner in = new Scanner(System.in);
+		int match1 = 0;
+		int match2 = 0;
+	
+		String names[] = new String[10];
+		
+		System.out.println("Please input up to 10 names to matchmake. Type stop to finish before 10.");
+		
+		for(int i = 0; i < names.length; i++) {
+			nameIn = in.nextLine();
+			if(nameIn.contains("stop")) {
+				nameLength = i;
+				break;
+			} else {
+				names[i] = nameIn;
+			}
+		}
+		
+		double coupleAmt = nameLength/2;
+		boolean loner = false;
+		if(coupleAmt % .5 == 0) {
+			loner = true;
+		}
+		
+		for(int i = nameLength; i < names.length; i++) {
+			names[i] = ".";
+		}
+		
+		for(int i = 0; i < coupleAmt * 2; i += 2) {
+			do {
+				match1 = (int) (Math.random() * nameLength);
+			} while(names[match1].contains("."));
+			
+			System.out.print(names[match1] + " has been matched with ");
+			names[match1] = ".";
+			
+			do {
+				match2 = (int) (Math.random() * nameLength);
+			} while(names[match2].contains("."));
+			
+			System.out.println(names[match2]);
+			names[match2] = ".";
+		}
+		if(loner == true) {
+			for(int i = 0; i < names.length; i++) {
+				if(names[i].contains(".")) {
+					
+				} else {
+					System.out.println(names[i] + " is alone. ):");
+				}
+			}
+		}
+		
+	}
+	
+
+}
